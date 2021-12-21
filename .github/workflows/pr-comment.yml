@@ -1,0 +1,9 @@
+name: PR comment
+on:
+  issue_comment:
+
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo hi
