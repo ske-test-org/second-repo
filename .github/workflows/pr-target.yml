@@ -8,4 +8,4 @@ jobs:
   run_if:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "What is on main"
+      - run: echo "What is on main mod 2"
