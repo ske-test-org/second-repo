@@ -8,12 +8,12 @@ jobs:
   run_if:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "What is on main"
+      - run: echo "What is on main 2"
       - name: comment
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR: ${{ github.event.pull_request.html_url }}
         run: |
           gh pr edit $PR --add-label 'invalid'
-          gh pr comment $PR --body 'yo'
+          gh pr comment $PR --body 'yo 2'
 
