@@ -1,15 +1,65 @@
-name: Release
+name: Approved for PR Comment
 
-on:
- push:
-#    tags:
-#      - "v1.*"
+# **What it does**: Adds a bot comment, containing directions and helpful links, to a docs-content issue when the `approved-for-pr` label is applied
+# **Why we have it**: This is intended to be used on docs updates that non-writer Hubbers have initiated, after they have completed their content design plan in the issue. The comment provides instructions and resources for opening a PR, saving time of writer reviewing the plan. 
+# **Who does it impact**: Hubbers making docs updates, writers
+
+on: 
+  issues:
+    types: 
+      - labeled
 
 jobs:
-  print_context:
+  job:
+    name: Comment on issue with approval and instructions for PR
     runs-on: ubuntu-latest
+    if: github.event.label.name == 'approved for PR'
     steps:
-      - env:
-          EVENT_CONTEXT: ${{ toJSON(github.event) }}
-        run: |
-          echo $EVENT_CONTEXT
+      - name: Comment on issue
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          issue: ${{ github.event.issue.html_url }}
+        run: | 
+          gh issue comment $issue --body 'The docs team has reviewed your content plan and possibly made some updates. It looks great and you’re ready to open a PR :tada:
+
+          Almost all doc updates should be made in [docs-internal](https://github.com/github/docs-internal); updates to the [REST reference](https://docs.github.com/rest/reference) docs  and the [GraphQL reference](https://docs.github.com/graphql/reference) docs are made in [github/github](https://docs.github.com/graphql/reference). 🧑‍🏫 See details below for how to open your PR and how to get a review.
+
+          ❗ Please note that this issue is marked as a Hubber contribution, so a writer will not pick this work up. If you have questions or concerns, join one of our weekly office hours or reach out to our team in #docs and someone can help! :writing_hand:
+
+          <details><summary>docs-internal instructions</summary>
+          <p>
+
+          Open a PR in [`docs-internal`](https://github.com/github/docs-internal) making all of the changes listed in your content plan above :point_up: The [working in the GitHub Docs repo](https://github.com/github/docs-internal/blob/main/CONTRIBUTING.md#working-in-the-githubdocs-repository) and [Reviewing](https://github.com/github/docs-internal/blob/main/CONTRIBUTING.md#reviewing) sections of our contributing guide have all the resources you need!
+
+          When your PR is ready, get a technical review from someone on your team to ensure everything’s ready to go, then add the `ready-for-doc-review` label for a writer review! We need _at least_ 72 business hours to review and finalize your PR, so it’s ready to ship :rocket:
+
+          </p>
+          </details>
+
+          <details><summary>REST API instructions</summary>
+          <p>
+
+          Most changes to the [REST reference](https://docs.github.com/rest/reference) docs are made by editing the OpenAPI schema in `github/github`.
+
+          - See [this doc](https://thehub.github.com/engineering/products-and-services/public-apis/rest/openapi/openapi-in-the-docs/#permissions-for-github-apps) for an overview of how the OpenAPI schema relates to the docs, common errors to watch out for, and the script to preview your changes.
+          - The docs team is automatically added as a reviewer once your PR is no longer in draft mode. Please [preview](https://thehub.github.com/engineering/products-and-services/public-apis/rest/openapi/openapi-in-the-docs/#previewing-changes-in-the-docs) your changes to make sure that the versioning is what you expect!
+
+          You may also need to open a `docs-internal` PR if:
+
+          - You want to edit any of the text that appears at the top of a [REST reference](https://docs.github.com/rest/reference) article or category.
+          - You add a new category or subcategory. [Click here for details.](https://thehub.github.com/engineering/products-and-services/public-apis/rest/openapi/openapi-in-the-docs/#adding-a-new-category-or-subcategory)
+          - You enable an operation for GitHub Apps (`x-github.enabledForGitHubApps: true`). [Click here for details.](https://thehub.github.com/engineering/products-and-services/public-apis/rest/openapi/openapi-in-the-docs/#permissions-for-github-apps)
+
+          </p>
+          </details>
+
+          <details><summary>GraphQL API instructions</summary>
+          <p>
+
+          The [GraphQL reference](https://docs.github.com/graphql/reference) docs are automatically built from the GraphQL schema in `github/github`. Reach out to [#ecosystem-api](https://github.slack.com/archives/C1042T6MS) if you have questions about the GraphQL schema.
+
+          You are also welcome to write a guide like [this one](https://docs.github.com/en/issues/trying-out-the-new-projects-experience/using-the-api-to-manage-projects) to help users use the GraphQL API for a specific purpose. To do so, follow the docs-internal instructions above.
+
+          </p>
+          </details>
+          '
