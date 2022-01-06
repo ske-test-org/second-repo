@@ -1,0 +1,13 @@
+name: push_tag
+
+on:
+  push:
+    tags:
+      - run_workflow
+      - run_workflow*
+
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo hi
