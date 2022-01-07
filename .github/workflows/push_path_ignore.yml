@@ -3,6 +3,7 @@ name: push_path_ignore
 on:
  push:
    branches:
+     - 'releasesx'
      - '!releases/**'
 
 jobs:
