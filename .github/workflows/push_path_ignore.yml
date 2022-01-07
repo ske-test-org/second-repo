@@ -2,8 +2,8 @@ name: push_path_ignore
 
 on:
  push:
-   paths-ignore:
-     - 'docs/**'
+   paths:
+     - '!docs/**'
 
 jobs:
   print:
