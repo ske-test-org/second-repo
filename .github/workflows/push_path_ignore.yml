@@ -1,13 +1,12 @@
 name: push_path_ignore
 
-on:
- push:
-   branches:
-     - 'releasesx'
-     - '!releases/**'
+on: workflow_dispatch
 
 jobs:
-  print:
+  print_context:
     runs-on: ubuntu-latest
     steps:
-      - run: echo hi
+      - env:
+          EVENT_CONTEXT: ${{ toJSON(github.event) }}
+        run: |
+          echo $EVENT_CONTEXT
