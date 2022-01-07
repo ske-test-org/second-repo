@@ -2,9 +2,8 @@ name: push_path_ignore
 
 on:
  push:
-   paths:
-     - '.github/**'
-     - '!docs/**'
+   branches:
+     - '!releases/**'
 
 jobs:
   print:
