@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows: [Upload data, Another thing]
     types:
-      - completed
+      - requested
 
 jobs:
   download:
