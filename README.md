@@ -1,8 +1,1 @@
-# second-repo
-
-gfgfdgf
-sfgsfgfggg
-fdgdf
-mlml
-fgsfgfsg
-fgsfgfs
+gfgfg
