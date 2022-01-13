@@ -1,18 +1,8 @@
 name: push_tag
 
-# on:
-#   push:
-#     tags:
-#       - run_workflow
-#       - run_workflow*
-#       - v1*
-#       - v2.*
-#       - v3**
 on:
   push:
-    tags:
-      - '**'
-
+    tags: ["v*"]
 
 jobs:
   print:
