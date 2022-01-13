@@ -11,7 +11,7 @@ name: push_tag
 on:
   push:
     tags:
-      - '*'
+      - '**'
 
 
 jobs:
