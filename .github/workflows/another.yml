@@ -1,22 +1,15 @@
-name: Another thing
-
 on:
-#   pull_request:
-  workflow_dispatch:
+  pull_request_target:
+    types:
+      - review_requested
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  request_doc_review:
     runs-on: ubuntu-latest
-
-    steps:        
-      - run: echo yo
-#       - name: Save PR number
-#         env:
-#           PR_NUMBER: ${{ github.event.number }} 
-#         run: |
-#           mkdir -p ./pr
-#           echo $PR_NUMBER > ./pr/pr_number
-#       - uses: actions/upload-artifact@v2
-#         with:
-#           name: pr_number
-#           path: pr/
+    steps: 
+    - run: echo $REV
+      env:
+        REV: ${{ github.event.requested_team.name }}
