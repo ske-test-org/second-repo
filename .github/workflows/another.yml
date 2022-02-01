@@ -10,7 +10,7 @@ permissions:
 jobs:
   request_doc_review:
     name: Request a review from the docs-content team
-    if: github.repository == 'github/docs-internal' && (github.event.label.name == 'ready-for-doc-review' || github.event.requested_team.name == 'test-team')
+    if: ${{ github.repository == 'github/docs-internal' && (github.event.label.name == 'ready-for-doc-review' || github.event.requested_team.name == 'test-team') }}
     runs-on: ubuntu-latest
 
     steps: 
