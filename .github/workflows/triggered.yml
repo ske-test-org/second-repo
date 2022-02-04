@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo hi
+      - run: echo ${{ github.event.workflow_run.event }}
 #       - name: View context attributes
 #         uses: actions/github-script@v5
 #         with:
