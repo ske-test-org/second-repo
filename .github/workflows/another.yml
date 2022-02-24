@@ -1,5 +1,3 @@
-
-
 on:
   issues:
     types:
@@ -9,16 +7,14 @@ on:
       - closed
 
 jobs:
-  if_merged:
+  state_event_type:
     runs-on: ubuntu-latest
     steps:
-    - env:
-        EVENT_CONTEXT: ${{ toJSON(github.event) }}
-      run: |
-        echo $EVENT_CONTEXT
-    - run: |
-        echo it was issue
+    - name: if_issue
       if: github.event.issue
-    - run: |
-        echo it was pr
+      run: |
+        echo An issue was closed
+    - name: if_pr
       if: github.event.pull_request
+      run: |
+        echo A pull request was closed
