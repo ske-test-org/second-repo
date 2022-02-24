@@ -17,4 +17,8 @@ jobs:
       run: |
         echo $EVENT_CONTEXT
     - run: |
-        echo The PR was merged
+        echo it was issue
+      if: github.event.issue
+    - run: |
+        echo it was pr
+      if: github.event.pull_request
