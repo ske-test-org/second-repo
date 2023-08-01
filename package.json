@@ -23,5 +23,8 @@
   "homepage": "https://github.com/ske-test-org/second-repo#readme",
   "engines": {
     "node": "^16 || ^18 || ^20"
+  },
+  "dependencies": {
+    "lodash.clonedeep": "^4.5.0"
   }
 }
