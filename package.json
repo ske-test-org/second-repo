@@ -1,3 +1,30 @@
 {
-  test: true
+  "name": "second-repo",
+  "version": "1.0.0",
+  "description": "fdgdfg test test test",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sync-rest": "echo 'test' > 'newFile.txt'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ske-test-org/second-repo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ske-test-org/second-repo/issues"
+  },
+  "homepage": "https://github.com/ske-test-org/second-repo#readme",
+  "engines": {
+    "node": "^16 || ^18 || ^20"
+  },
+  "dependencies": {
+    "lodash.clonedeep": "^4.5.0"
+  }
 }
