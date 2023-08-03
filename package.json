@@ -8,8 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sync-rest": "echo 'test2' > 'newFile.txt'",
-    "sync-webhooks": "echo 'testing' > 'newFile2.txt'"
+    "sync-rest": "echo 'test2'",
+    "sync-webhooks": "echo 'testing'"
   },
   "repository": {
     "type": "git",
